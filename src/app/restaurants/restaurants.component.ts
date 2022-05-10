@@ -20,16 +20,13 @@ export class RestaurantsComponent implements OnInit {
     'type':'',
     'description':'',
     'logo':'',
-
-
   };
   constructor(private RestaurantService: RestaurantService) { }
 
   ngOnInit(): void {
-   
-    
   }
-// creating  Reactive Form
+
+  // creating  Reactive Form
   restaurantForm = new FormGroup({
     userName: new FormControl('',  Validators.required),
     userEmail:new FormControl('',[
@@ -40,7 +37,6 @@ export class RestaurantsComponent implements OnInit {
 
   get userEmail(){
     return this.restaurantForm.get('userEmail')
-  
   }
   get userName(){
     return this.restaurantForm.get('userName')
@@ -56,7 +52,6 @@ export class RestaurantsComponent implements OnInit {
   onSubmit(){
     this.showResturants(this.storeUrl?.value)
     this.formSubmitted= true;
-
   }
 
 // calling restaurants api
@@ -69,21 +64,19 @@ showResturants(url:any){
 
 // function for most used words
  findMostRepeatedWord(str:any) {
-  console.error(str)
-  var lowerCaseString = str.toLowerCase();
-  let dataArray = lowerCaseString.split(' ');
-  console.log(lowerCaseString)
-  dataArray.forEach((element:any) => {
-      this.restaurants[element] = (this.restaurants[element] || 0) + 1;
-  });
-console.error(this.restaurants)
+    console.error(str)
+    var lowerCaseString = str.toLowerCase();
+    let dataArray = lowerCaseString.split(' ');
+    console.log(lowerCaseString)
+    dataArray.forEach((element:any) => {
+        this.restaurants[element] = (this.restaurants[element] || 0) + 1;
+    });
+    console.error(this.restaurants)
 
-}
+  }
 
-
-
-goBack(){
-  this.formSubmitted = false;
-}
+  goBack(){
+    this.formSubmitted = false;
+  }
 
 }
