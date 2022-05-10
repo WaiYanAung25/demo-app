@@ -1,0 +1,18 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';  
+@Injectable({
+  providedIn: 'root'
+})
+export class ResturantService {
+
+  constructor(private http: HttpClient) { }
+
+
+  getResturants(url:string): Observable <any> {
+    return this.http.get(url).pipe(map(data=>{{
+      return data;
+    }}))
+  } 
+}

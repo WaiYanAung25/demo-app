@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    width: 100%;
+    overflow: hidden;
+    display: block;
+    margin: 0;
+    background:   -webkit-linear-gradient( 136deg, rgb(254,225,64) 0%, rgb(250,112,154) 100%);
+}
