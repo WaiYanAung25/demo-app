@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ResturantService } from "../services/restaurant.service";
+import { RestaurantService } from "../services/restaurant.service";
 import { FormControl,FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
@@ -23,7 +23,7 @@ export class RestaurantsComponent implements OnInit {
 
 
   };
-  constructor(private resturantService: ResturantService) { }
+  constructor(private RestaurantService: RestaurantService) { }
 
   ngOnInit(): void {
    
@@ -61,7 +61,7 @@ export class RestaurantsComponent implements OnInit {
 
 // calling restaurants api
 showResturants(url:any){
-  this.resturantService.getResturants(url).subscribe((response)=>{
+  this.RestaurantService.getResturants(url).subscribe((response)=>{
     this.restaurantDetails=response;
     this.findMostRepeatedWord(response.description)
   })

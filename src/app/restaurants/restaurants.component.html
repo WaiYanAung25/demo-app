@@ -25,7 +25,7 @@
                             <textarea class="form-control" type="text" name="storeUrl" placeholder="Store URL" required
                                 formControlName="storeUrl"></textarea>
                             <div *ngIf="storeUrl && storeUrl.invalid && (storeUrl.dirty || storeUrl.touched)"
-                                class="invalid-feedback">storeUrl field cannot be blank!</div>
+                                class="invalid-feedback">Store Url field cannot be blank!</div>
                         </div>
 
                         <div class="form-button mt-3">
@@ -49,10 +49,9 @@
         </div>
         <div class="card-footer">
             <h3>Most use words in description</h3>
-            <div *ngFor="let item of (restaurants | keyvalue)">
+            <div *ngFor="let item of (restaurants | keyvalue)" >
                 <span *ngIf="item&& item.value >= 5">Words:{{item.key}} Total Count:{{item.value}}</span>
             </div>
-
             <a href="#" class="btn btn-primary" (click)="goBack()">Register Restaurant</a>
         </div>
       </div>
