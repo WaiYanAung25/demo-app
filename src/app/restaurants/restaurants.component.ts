@@ -11,26 +11,31 @@ import { Validators } from '@angular/forms';
 
 export class RestaurantsComponent implements OnInit {
 
-  url= 'https://random-data-api.com/api/restaurant/random_restaurant'
+  // url= 'https://random-data-api.com/api/restaurant/random_restaurant'
 
+  formSubmitted = false;
   restaurants:any[]= []; 
+  restaurantDetails = {
+    'name':'',
+    'type':'',
+    'description':'',
+    'logo':'',
 
+
+  };
   constructor(private resturantService: ResturantService) { }
 
   ngOnInit(): void {
-    this.showResturants()
+   
+    
   }
-
-
-
+// creating  Reactive Form
   restaurantForm = new FormGroup({
-
     userName: new FormControl('',  Validators.required),
     userEmail:new FormControl('',[
       Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
-    storeName: new FormControl('',  Validators.required,),
-    description: new FormControl(''),
+    storeUrl: new FormControl('', Validators.required),
   });
 
   get userEmail(){
@@ -42,22 +47,31 @@ export class RestaurantsComponent implements OnInit {
   
   }
 
-  get storeName(){
-    return this.restaurantForm.get('storeName')
+  get storeUrl(){
+    return this.restaurantForm.get('storeUrl')
   
   }
 
+  // submmiting the form
   onSubmit(){
-    console.warn(  this.restaurantForm + 'resturant form submit');
+    this.showResturants(this.storeUrl?.value)
+    this.formSubmitted= true;
+
   }
 
+// calling restaurants api
+showResturants(url:any){
+  this.resturantService.getResturants(url).subscribe((response)=>{
+    this.restaurantDetails=response;
+    this.findMostRepeatedWord(response.description)
+  })
+}
 
-
+// function for most used words
  findMostRepeatedWord(str:any) {
+  console.error(str)
   var lowerCaseString = str.toLowerCase();
   let dataArray = lowerCaseString.split(' ');
-
-
   console.log(lowerCaseString)
   dataArray.forEach((element:any) => {
       this.restaurants[element] = (this.restaurants[element] || 0) + 1;
@@ -68,12 +82,8 @@ console.error(this.restaurants)
 
 
 
-showResturants(){
-  this.resturantService.getResturants(this.url).subscribe((response)=>{
-    this.findMostRepeatedWord(response.description)
-  })
+goBack(){
+  this.formSubmitted = false;
 }
-
-
 
 }

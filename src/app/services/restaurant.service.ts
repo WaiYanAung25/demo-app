@@ -11,6 +11,8 @@ export class ResturantService {
 
 
   getResturants(url:string): Observable <any> {
+
+    console.log(url)
     return this.http.get(url).pipe(map(data=>{{
       return data;
     }}))

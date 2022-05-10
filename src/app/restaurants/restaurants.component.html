@@ -1,20 +1,4 @@
-<!-- <p>resturants works!</p>
-<form [formGroup]="restaurantForm">
-
-    <label for="first-name">First Name: </label>
-    <input id="first-name" type="text" formControlName="firstName">
-  
-    <label for="last-name">Last Name: </label>
-    <input id="last-name" type="text" formControlName="Description">
-  
-  </form> -->
-
-
-
-
-
-
-  <div class="form-body">
+<div class="form-body" *ngIf="formSubmitted == false">
     <div class="row">
         <div class="form-holder">
             <div class="form-content">
@@ -23,21 +7,30 @@
                     <p>Fill in the data below.</p>
                     <form class="requires-validation" [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">
                         <div class="col-md-12">
-                            <input class="form-control" id="userName" type="text" name="userName" placeholder="User Name" required formControlName="userName">
-                            <div *ngIf="userName && userName.invalid && (userName.dirty || userName.touched)" class="invalid-feedback">UserName field cannot be blank!</div>
-                         </div>
-                         <div class="col-md-12">
-                            <input class="form-control"  type="text" name="email" placeholder="Email" required formControlName="userEmail">
-                            <div *ngIf="userEmail&& userEmail.errors?.['pattern']"  class="invalid-feedback">Please provide a valid email addresss</div>
-                            <div *ngIf="userEmail && (userEmail.dirty || userEmail.touched)&&userEmail.errors?.['required']" class="invalid-feedback">Emaill cannot be blank!</div>
-                         </div>
+                            <input class="form-control" id="userName" type="text" name="userName"
+                                placeholder="User Name" required formControlName="userName">
+                            <div *ngIf="userName && userName.invalid && (userName.dirty || userName.touched)"
+                                class="invalid-feedback">UserName field cannot be blank!</div>
+                        </div>
                         <div class="col-md-12">
-                           <input class="form-control" type="text" name="storeName" placeholder="Store Name" required formControlName="storeName">
-                           <div  *ngIf="storeName && storeName.invalid && (storeName.dirty || storeName.touched)" class="invalid-feedback">StoreName field cannot be blank!</div>
-                        </div>              
+                            <input class="form-control" type="text" name="email" placeholder="Email" required
+                                formControlName="userEmail">
+                            <div *ngIf="userEmail&& userEmail.errors?.['pattern']" class="invalid-feedback">Please
+                                provide a valid email addresss</div>
+                            <div *ngIf="userEmail && (userEmail.dirty || userEmail.touched)&&userEmail.errors?.['required']"
+                                class="invalid-feedback">Emaill cannot be blank!</div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <textarea class="form-control" type="text" name="storeUrl" placeholder="Store URL" required
+                                formControlName="storeUrl"></textarea>
+                            <div *ngIf="storeUrl && storeUrl.invalid && (storeUrl.dirty || storeUrl.touched)"
+                                class="invalid-feedback">storeUrl field cannot be blank!</div>
+                        </div>
 
                         <div class="form-button mt-3">
-                            <button id="submit" type="submit" class="btn btn-primary" [disabled]="!restaurantForm.valid">Register</button>
+                            <button id="submit" type="submit" class="btn btn-primary"
+                                [disabled]="!restaurantForm.valid">Register</button>
                         </div>
                     </form>
                 </div>
@@ -47,7 +40,20 @@
 </div>
 
 
-<div *ngFor="let item of (restaurants | keyvalue)">
-    <span *ngIf="item&& item.value >= 10" >{{item.key}} {{item.value}}</span>
+<div class=" profile-holder"  >
+    <div class="card" style="width: 30rem;">
+        <img src="{{restaurantDetails.logo}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{restaurantDetails.name}}</h5>
+          <p class="card-text">{{restaurantDetails.description |slice:0:80}}</p>
+        </div>
+        <div class="card-footer">
+            <h3>Most use words in description</h3>
+            <div *ngFor="let item of (restaurants | keyvalue)">
+                <span *ngIf="item&& item.value >= 5">Words:{{item.key}} Total Count:{{item.value}}</span>
+            </div>
 
+            <a href="#" class="btn btn-primary" (click)="goBack()">Register Restaurant</a>
+        </div>
+      </div>
 </div>

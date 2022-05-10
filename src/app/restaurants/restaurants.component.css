@@ -12,6 +12,14 @@
     min-height: 100vh;
 }
 
+.profile-holder{
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
 .form-holder .form-content {
   position: absolute;
   text-align: center;
@@ -114,7 +122,7 @@
   height: 120px;
   -webkit-transition: none;
   transition: none;
-  margin-bottom: 14px;
+  margin-top: 16px;
 }
 
 .form-content textarea:hover, .form-content textarea:focus {
