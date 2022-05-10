@@ -3,6 +3,10 @@
 
  
 }
+.card-img-top{
+
+  height: 20rem;
+}
 .form-holder {
     display: flex;
     flex-direction: column;
