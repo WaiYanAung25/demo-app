@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 export class RestaurantService {
 
   constructor(private http: HttpClient) { }
-
+  
 
   getResturants(url:string): Observable <any> {
 

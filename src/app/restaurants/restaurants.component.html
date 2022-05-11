@@ -5,7 +5,7 @@
                 <div class="form-items">
                     <h3>Register Today</h3>
                     <p>Fill in the data below.</p>
-                    <form class="requires-validation" [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">
+                    <form class="requires-validation" [formGroup]="restaurantForm" (ngSubmit)="onSubmit()" id="restaurantForm">
                         <div class="col-md-12">
                             <input class="form-control" id="userName" type="text" name="userName"
                                 placeholder="User Name" required formControlName="userName">
@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="form-button mt-3">
-                            <button id="submit" type="submit" class="btn btn-primary"
+                            <button id="submit" type="submit" class="btn btn-primary register-button"
                                 [disabled]="!restaurantForm.valid">Register</button>
                         </div>
                     </form>
@@ -45,7 +45,7 @@
         <img src="{{restaurantDetails.logo}}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{restaurantDetails.name}}</h5>
-          <p class="card-text">{{restaurantDetails.description }}</p>|slice:0:80
+          <p class="card-text">{{restaurantDetails.description }}</p> 
         </div>
         <div class="card-footer">
             <h3>Most use words in description</h3>
