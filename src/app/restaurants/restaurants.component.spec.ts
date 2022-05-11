@@ -30,7 +30,7 @@ describe('ResturantsComponent', () => {
 
   it('form invalid when empty', () => {
     expect(component.restaurantForm.valid).toBeFalsy();
-});
+  });
 
   it('user name field validity', () => {
     let errors = component.restaurantForm.errors || {};
@@ -91,7 +91,6 @@ describe('ResturantsComponent', () => {
   });
 
   it('form should be valid', () => {
-
     component.restaurantForm.controls['userName'].setValue("sasd");
     component.restaurantForm.controls['userEmail'].setValue("test@test.com");
     component.restaurantForm.controls['storeUrl'].setValue("http://abc.com/xxx");
@@ -103,15 +102,26 @@ describe('ResturantsComponent', () => {
     component.onSubmit()
     fixture.detectChanges()
     fixture.whenStable().then(()=>{
-  expect(fnc).toHaveBeenCalledTimes(1);
-
-})
-
-  
-    // expect(component.restaurantForm).toHaveBeenCalledTimes(1);
+      expect(fnc).toHaveBeenCalledTimes(1);
+    })
   });
 
-
+  it('should call onSubmit method', () => {
+    const fnc = spyOn(component,'onSubmit')
+    component.onSubmit()
+    fixture.detectChanges()
+    fixture.whenStable().then(()=>{
+      expect(fnc).toHaveBeenCalledTimes(1);
+    })
+  });
   
-
+  it('should return object', () => {
+    const description = 'A an being by';
+    expect(component.findMostRepeatedWord(description)).toBeInstanceOf(Object);
+  });
+  
+  it('should return object', () => {
+    const description = 'A an being by';
+    expect(component.findMostRepeatedWord(description)).toBeInstanceOf(Object);
+  });
 });

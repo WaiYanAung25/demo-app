@@ -32,7 +32,6 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         RestaurantsComponent
-        
       ],
     }).compileComponents();
   });

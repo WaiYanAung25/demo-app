@@ -50,7 +50,7 @@
         <div class="card-footer">
             <h3>Most use words in description</h3>
             <div *ngFor="let item of (restaurants | keyvalue)" >
-                <span *ngIf="item&& item.value >= 5"> Repeated Words: <b>"{{item.key}}"</b> && Occurance Count: <b>"{{item.value}}"</b></span>
+                <span *ngIf="item&& item.value >= 1"> Repeated Words: <b>"{{item.key}}"</b> && Occurance Count: <b>"{{item.value}}"</b></span>
             </div>
             <a href="#" class="btn btn-primary" (click)="goBack()">Register Restaurant</a>
         </div>

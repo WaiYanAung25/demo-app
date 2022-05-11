@@ -38,6 +38,7 @@ export class RestaurantsComponent implements OnInit {
   get userEmail(){
     return this.restaurantForm.get('userEmail')
   }
+  
   get userName(){
     return this.restaurantForm.get('userName')
   
@@ -45,7 +46,6 @@ export class RestaurantsComponent implements OnInit {
 
   get storeUrl(){
     return this.restaurantForm.get('storeUrl')
-  
   }
 
   // submmiting the form
@@ -54,29 +54,25 @@ export class RestaurantsComponent implements OnInit {
     this.formSubmitted= true;
   }
 
-// calling restaurants api
-showResturants(url:any){
-  this.RestaurantService.getResturants(url).subscribe((response)=>{
-    this.restaurantDetails=response;
-    this.findMostRepeatedWord(response.description)
-  })
-}
+  // calling restaurants api
+  showResturants(url:any){
+    this.RestaurantService.getResturants(url).subscribe((response)=>{
+      this.restaurantDetails=response;
+      this.findMostRepeatedWord(response.description)
+    })
+  }
 
-// function for most used words
- findMostRepeatedWord(str:any) {
-    console.error(str)
+  // function for most used words
+  findMostRepeatedWord(str:any) {
     var lowerCaseString = str.toLowerCase();
     let dataArray = lowerCaseString.split(' ');
-    console.log(lowerCaseString)
     dataArray.forEach((element:any) => {
-        this.restaurants[element] = (this.restaurants[element] || 0) + 1;
+      this.restaurants[element] = (this.restaurants[element] || 0) + 1;
     });
-    console.error(this.restaurants)
-
+    return this.restaurants;
   }
 
   goBack(){
     this.formSubmitted = false;
   }
-
 }
