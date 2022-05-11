@@ -24,8 +24,6 @@
                         <div class="col-md-12">
                             <textarea class="form-control" type="text" name="storeUrl" placeholder="Store URL" required
                                 formControlName="storeUrl"></textarea>
-                                <div *ngIf="storeUrl&& storeUrl.errors?.['pattern']" class="invalid-feedback">Please
-                                    provide a valid url addresss</div>
                             <div *ngIf="storeUrl && (storeUrl.dirty || storeUrl.touched)&&storeUrl.errors?.['required']"
                                 class="invalid-feedback">Store Url field cannot be blank!</div>
                         </div>
