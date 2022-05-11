@@ -55,12 +55,12 @@ export class RestaurantsComponent implements OnInit {
   showResturants(url:any){
     this.RestaurantService.getResturants(url).subscribe((response)=>{
       this.restaurantDetails=response;
-      this.mostRepeatedWords = this.findMostRepeatedWord(response.description);
+      this.mostRepeatedWords = this.findDuplicateWords(response.description);
     })
   }
 
   // function for most used words
-  findMostRepeatedWord(str:any) {
+  findDuplicateWords(str:any) {
     let dataArray =  str.toLowerCase().split(' ');
     const duplicateWords = dataArray.reduce((accumulator:any, value:any) => {
       return {...accumulator, [value]: (accumulator[value] || 0) + 1};

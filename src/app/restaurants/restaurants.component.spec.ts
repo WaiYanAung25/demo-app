@@ -115,9 +115,9 @@ describe('ResturantsComponent', () => {
     })
   });
   
-  it('should return most repeated words as an object', () => {
+  it('should return duplicate words and count as an object', () => {
     const description = 'A an being by';
-    expect(component.findMostRepeatedWord(description)).toBeInstanceOf(Object);
-    expect(component.findMostRepeatedWord(description)).toEqual({a: 1, an: 1, being: 1, by: 1});
+    expect(component.findDuplicateWords(description)).toBeInstanceOf(Object);
+    expect(component.findDuplicateWords(description)).toEqual({a: 1, an: 1, being: 1, by: 1});
   });
 });
