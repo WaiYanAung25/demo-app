@@ -39,17 +39,19 @@
     </div>
 </div>
 
+
 <div class="form-body" *ngIf="formSubmitted">
     <div class="row">
         <div class="form-holder">
             <div class="form-content">
-                <div class="form-items">
-                    <h3>Most use words in description</h3>
-                    <!-- <p>Fill in the data below.</p> -->
-                    <div class="d-flex m-auto">
-                        <span *ngFor="let item of (restaurants | keyvalue)">
-                            {{item.key}} <span class="badge text-count">  {{item.value}}  </span>
-                        </span>
+                <div class="form-items" id='description-item'>
+                    <h3 class="text-center description-title">Most use words in description</h3>
+                  
+                    <div class="d-flex m-auto word-count-wraper w-100 flex-wrap">
+                        <p  class="btn bg-info description-box" *ngFor="let item of (restaurants | keyvalue)">
+                            {{item.key}} <span class="badge badge-light text-count">{{item.value}}</span>
+                        </p>
+                        
                     </div>
                 </div>
             </div>

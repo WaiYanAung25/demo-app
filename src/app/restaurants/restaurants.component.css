@@ -1,8 +1,14 @@
 
 
-.card-img-top{
-
-  height: 20rem;
+#description-item{
+  width: 80%!important;
+}
+.description-title{
+  margin-bottom: 1rem!important;
+}
+.description-box{
+  margin:0rem 0.5rem 0.5rem 0rem!important;
+  cursor:unset!important;
 }
 .form-holder {
     display: flex;

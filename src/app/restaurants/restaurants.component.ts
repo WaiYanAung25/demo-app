@@ -80,4 +80,6 @@ export class RestaurantsComponent implements OnInit {
   goBack(){
     this.formSubmitted = false;
   }
+
+  
 }
