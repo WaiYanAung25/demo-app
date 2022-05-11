@@ -70,6 +70,21 @@ describe('ResturantsComponent', () => {
     expect(errors['pattern']).toBeFalsy();
   });
 
+  it('short-url field validity', () => {
+    let errors = component.restaurantForm.errors || {};
+    let storeUrl = component.restaurantForm.controls['storeUrl'];
+    expect(storeUrl.valid).toBeFalsy();
+
+    // storeUrl field is required
+    errors = storeUrl.errors || {};
+    expect(errors['required']).toBeTruthy();
+
+    // Set storeUrl to something
+    storeUrl.setValue("http://abc.com/xxx");
+    errors = storeUrl.errors || {};
+    expect(errors['required']).toBeFalsy();
+  });
+
   it('should set submitted to true', () => {
     component.onSubmit();
     expect(component.formSubmitted).toBeTruthy();
@@ -80,7 +95,7 @@ describe('ResturantsComponent', () => {
     component.restaurantForm.controls['userName'].setValue("sasd");
     component.restaurantForm.controls['userEmail'].setValue("test@test.com");
     component.restaurantForm.controls['storeUrl'].setValue("http://abc.com/xxx");
-      expect(component.restaurantForm.valid).toBeTruthy();
+    expect(component.restaurantForm.valid).toBeTruthy();
   });
 
   it('should call onSubmit method', () => {
