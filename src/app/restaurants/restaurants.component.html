@@ -25,7 +25,7 @@
                             <textarea class="form-control" type="text" name="storeUrl" placeholder="Store URL" required
                                 formControlName="storeUrl"></textarea>
                             <div *ngIf="storeUrl&& storeUrl.errors?.['pattern']" class="invalid-feedback">Please
-                                    provide a valid email addresss</div>
+                                    provide a valid URL</div>
                             <div *ngIf="storeUrl && (storeUrl.dirty || storeUrl.touched)&&storeUrl.errors?.['required']"
                                 class="invalid-feedback">Store Url field cannot be blank!</div>
                         </div>
@@ -50,7 +50,6 @@
                     <h3 class="text-center description-title">Most use words in description</h3>
                   
                     <div class="d-flex m-auto word-count-wraper w-100 flex-wrap" >
-
                         <div *ngFor="let item of (mostRepeatedWords | keyvalue) index" >
                         <p  class="btn bg-info description-box" *ngIf="item.value > 3" >
                           {{item.key}} <span class="badge badge-light text-count">{{item.value}}</span>
