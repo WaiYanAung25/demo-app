@@ -49,14 +49,13 @@
                 <div class="form-items" id='description-item'>
                     <h3 class="text-center description-title">Most use words in description</h3>
                   
-                    <div class="d-flex m-auto word-count-wraper w-100 flex-wrap" *ngIf="mostRepeatedWords.length">
-                        <p  class="btn bg-info description-box" *ngFor="let item of (mostRepeatedWords | keyvalue)">
-                            {{item.key}} <span class="badge badge-light text-count">{{item.value}}</span>
+                    <div class="d-flex m-auto word-count-wraper w-100 flex-wrap" >
+
+                        <div *ngFor="let item of (mostRepeatedWords | keyvalue)" >
+                        <p  class="btn bg-info description-box" *ngIf="item.value > 10" >
+                          {{item.key}} <span class="badge badge-light text-count">{{item.value}}</span>
                         </p>
                     </div>
-
-                    <div class="d-flex m-auto word-count-wraper w-100 flex-wrap" *ngIf="mostRepeatedWords.length < 0">
-                        <p>No matches words are found.</p>
                     </div>
                 </div>
             </div>
