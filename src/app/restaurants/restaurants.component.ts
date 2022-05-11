@@ -29,8 +29,7 @@ export class RestaurantsComponent implements OnInit {
       Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
     storeUrl: new FormControl('', [
-      Validators.required, 
-      Validators.pattern("^(http[s]?:\\/\\/){0,1}(www\\.){0,1}[a-zA-Z0-9\\.\\-]+\\.[a-zA-Z]{2,5}[\\.]{0,1}$")]),
+      Validators.required]),
   });
 
   get userEmail(){
@@ -57,6 +56,8 @@ export class RestaurantsComponent implements OnInit {
     this.RestaurantService.getResturants(url).subscribe((response)=>{
       this.restaurantDetails=response;
       this.mostRepeatedWords = this.findMostRepeatedWord(response.description)
+
+      console.log( this.mostRepeatedWords)
     })
   }
 
