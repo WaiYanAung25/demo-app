@@ -29,7 +29,11 @@ export class RestaurantsComponent implements OnInit {
       Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
     storeUrl: new FormControl('', [
-      Validators.required]),
+      Validators.required,
+
+      Validators.pattern(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/)
+    
+    ]),
   });
 
   get userEmail(){
