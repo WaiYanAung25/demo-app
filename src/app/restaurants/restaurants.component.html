@@ -52,18 +52,15 @@
                     <div class="d-flex m-auto word-count-wraper w-100 flex-wrap" >
 
                         <div *ngFor="let item of (mostRepeatedWords | keyvalue) index" >
-                        <p  class="btn bg-info description-box" *ngIf="item.value > 10" >
+                        <p  class="btn bg-info description-box" *ngIf="item.value > 3" >
                           {{item.key}} <span class="badge badge-light text-count">{{item.value}}</span>
                         </p>
 
-                        <div class="d-flex m-auto word-count-wraper w-100 flex-wrap" *ngIf="item.value < 10"> 
-                            <p>No matches words are found.</p>
-                        </div>
                     </div>
                     </div>
 <!-- validate  below  -->
-                    <div class="d-flex m-auto word-count-wraper w-100 flex-wrap" *ngIf="mostRepeatedWords.length <= 0"> 
-                        <p>No matches words are found.</p>
+                    <div class="d-flex m-auto word-count-wraper w-100 flex-wrap" *ngIf="noWords === true"> 
+                        <p>No matches words are found. {{noWords}}</p>
                     </div>
                 </div>
             </div>

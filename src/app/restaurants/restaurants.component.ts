@@ -30,7 +30,6 @@ export class RestaurantsComponent implements OnInit {
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
     storeUrl: new FormControl('', [
       Validators.required,
-
       Validators.pattern(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/)
     
     ]),
@@ -54,12 +53,23 @@ export class RestaurantsComponent implements OnInit {
     this.showResturants(this.storeUrl?.value)
     this.formSubmitted= true;
   }
-
+  noWords = true;
+   countArray:any = []
   // calling restaurants api
   showResturants(url:any){
     this.RestaurantService.getResturants(url).subscribe((response)=>{
       this.restaurantDetails=response;
       this.mostRepeatedWords = this.findDuplicateWords(response.description);
+      Object.values( this.mostRepeatedWords).forEach(element => {
+        console.log(element);
+        if(element>=3){
+
+          this.countArray.push(element)
+          console.log(this.countArray)
+          this.noWords = false;
+          }
+          console.log(this.noWords)
+        })
     })
   }
 
