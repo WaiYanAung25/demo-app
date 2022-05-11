@@ -30,7 +30,7 @@ describe('ResturantsComponent', () => {
 
   it('form invalid when empty', () => {
     expect(component.restaurantForm.valid).toBeFalsy();
-});
+  });
 
   it('user name field validity', () => {
     let errors = component.restaurantForm.errors || {};
@@ -70,17 +70,31 @@ describe('ResturantsComponent', () => {
     expect(errors['pattern']).toBeFalsy();
   });
 
+  it('short-url field validity', () => {
+    let errors = component.restaurantForm.errors || {};
+    let storeUrl = component.restaurantForm.controls['storeUrl'];
+    expect(storeUrl.valid).toBeFalsy();
+
+    // storeUrl field is required
+    errors = storeUrl.errors || {};
+    expect(errors['required']).toBeTruthy();
+
+    // Set storeUrl to something
+    storeUrl.setValue("http://abc.com/xxx");
+    errors = storeUrl.errors || {};
+    expect(errors['required']).toBeFalsy();
+  });
+
   it('should set submitted to true', () => {
     component.onSubmit();
     expect(component.formSubmitted).toBeTruthy();
   });
 
   it('form should be valid', () => {
-
     component.restaurantForm.controls['userName'].setValue("sasd");
     component.restaurantForm.controls['userEmail'].setValue("test@test.com");
     component.restaurantForm.controls['storeUrl'].setValue("http://abc.com/xxx");
-      expect(component.restaurantForm.valid).toBeTruthy();
+    expect(component.restaurantForm.valid).toBeTruthy();
   });
 
   it('should call onSubmit method', () => {
@@ -88,15 +102,26 @@ describe('ResturantsComponent', () => {
     component.onSubmit()
     fixture.detectChanges()
     fixture.whenStable().then(()=>{
-  expect(fnc).toHaveBeenCalledTimes(1);
-
-})
-
-  
-    // expect(component.restaurantForm).toHaveBeenCalledTimes(1);
+      expect(fnc).toHaveBeenCalledTimes(1);
+    })
   });
 
-
+  it('should call onSubmit method', () => {
+    const fnc = spyOn(component,'onSubmit')
+    component.onSubmit()
+    fixture.detectChanges()
+    fixture.whenStable().then(()=>{
+      expect(fnc).toHaveBeenCalledTimes(1);
+    })
+  });
   
-
+  it('should return object', () => {
+    const description = 'A an being by';
+    expect(component.findMostRepeatedWord(description)).toBeInstanceOf(Object);
+  });
+  
+  it('should return object', () => {
+    const description = 'A an being by';
+    expect(component.findMostRepeatedWord(description)).toBeInstanceOf(Object);
+  });
 });

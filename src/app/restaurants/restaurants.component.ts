@@ -38,6 +38,7 @@ export class RestaurantsComponent implements OnInit {
   get userEmail(){
     return this.restaurantForm.get('userEmail')
   }
+
   get userName(){
     return this.restaurantForm.get('userName')
   
@@ -45,7 +46,6 @@ export class RestaurantsComponent implements OnInit {
 
   get storeUrl(){
     return this.restaurantForm.get('storeUrl')
-  
   }
 
   // submmiting the form
@@ -54,29 +54,30 @@ export class RestaurantsComponent implements OnInit {
     this.formSubmitted= true;
   }
 
-// calling restaurants api
-showResturants(url:any){
-  this.RestaurantService.getResturants(url).subscribe((response)=>{
-    this.restaurantDetails=response;
-    this.findMostRepeatedWord(response.description)
-  })
-}
+  // calling restaurants api
+  showResturants(url:any){
+    url = 'https://random-data-api.com/api/restaurant/random_restaurant'
+    this.RestaurantService.getResturants(url).subscribe((response)=>{
+      this.restaurantDetails=response;
+      this.restaurants = this.findMostRepeatedWord(response.description)
+    })
+  }
 
-// function for most used words
- findMostRepeatedWord(str:any) {
-    console.error(str)
+  // function for most used words
+  findMostRepeatedWord(str:any) {
+    var restaurant:any = [{}];
+    str = 'our values have remained the same.'
     var lowerCaseString = str.toLowerCase();
     let dataArray = lowerCaseString.split(' ');
-    console.log(lowerCaseString)
-    dataArray.forEach((element:any) => {
-        this.restaurants[element] = (this.restaurants[element] || 0) + 1;
+    dataArray.forEach((word:any) => {
+      console.log(restaurant) // values
+      restaurant[word] = (restaurant[word] || 0) + 1;
     });
-    console.error(this.restaurants)
-
+    console.error(restaurant);
+    return restaurant;
   }
 
   goBack(){
     this.formSubmitted = false;
   }
-
 }

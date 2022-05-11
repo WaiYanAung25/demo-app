@@ -12,8 +12,14 @@
     text-align: center;
     min-height: 100vh;
 }
-
-.profile-holder{
+.text-count {
+  background-color: #495056;
+}
+.res-description{
+  height: 300px;
+  overflow: auto;
+}
+.store-holder{
   display: flex;
     flex-direction: column;
     justify-content: center;

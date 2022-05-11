@@ -19,4 +19,9 @@ describe('ResturantService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should call service api', () => {
+    const url = 'https://random-data-api.com/api/restaurant/random_restaurant';
+    expect(service.getResturants(url)).toBeTruthy();
+  });
 });
