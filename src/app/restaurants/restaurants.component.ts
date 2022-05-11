@@ -61,14 +61,10 @@ export class RestaurantsComponent implements OnInit {
       this.restaurantDetails=response;
       this.mostRepeatedWords = this.findDuplicateWords(response.description);
       Object.values( this.mostRepeatedWords).forEach(element => {
-        console.log(element);
-        if(element>=3){
-
+        if(element>=10){
           this.countArray.push(element)
-          console.log(this.countArray)
           this.noWords = false;
           }
-          console.log(this.noWords)
         })
     })
   }

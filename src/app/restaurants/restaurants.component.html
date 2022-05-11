@@ -51,7 +51,7 @@
                   
                     <div class="d-flex m-auto word-count-wraper w-100 flex-wrap" >
                         <div *ngFor="let item of (mostRepeatedWords | keyvalue) index" >
-                        <p  class="btn bg-info description-box" *ngIf="item.value > 3" >
+                        <p  class="btn bg-info description-box" *ngIf="item.value >= 10" >
                           {{item.key}} <span class="badge badge-light text-count">{{item.value}}</span>
                         </p>
 
