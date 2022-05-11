@@ -55,9 +55,7 @@ export class RestaurantsComponent implements OnInit {
   showResturants(url:any){
     this.RestaurantService.getResturants(url).subscribe((response)=>{
       this.restaurantDetails=response;
-      this.mostRepeatedWords = this.findMostRepeatedWord(response.description)
-
-      console.log( this.mostRepeatedWords)
+      this.mostRepeatedWords = this.findMostRepeatedWord(response.description);
     })
   }
 

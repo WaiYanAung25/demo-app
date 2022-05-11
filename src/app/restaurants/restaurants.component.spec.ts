@@ -119,9 +119,4 @@ describe('ResturantsComponent', () => {
     const description = 'A an being by';
     expect(component.findMostRepeatedWord(description)).toBeInstanceOf(Object);
   });
-  
-  it('should return object', () => {
-    const description = 'A an being by';
-    expect(component.findMostRepeatedWord(description)).toBeInstanceOf(Object);
-  });
 });
