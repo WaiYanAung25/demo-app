@@ -10,11 +10,8 @@ import { Validators } from '@angular/forms';
 })
 
 export class RestaurantsComponent implements OnInit {
-
-  // url= 'https://random-data-api.com/api/restaurant/random_restaurant'
-
   formSubmitted = false;
-  restaurants:any[]= []; 
+  mostRepeatedWords:any[]= []; 
   restaurantDetails = {
     'name':'',
     'type':'',
@@ -23,8 +20,7 @@ export class RestaurantsComponent implements OnInit {
   };
   constructor(private RestaurantService: RestaurantService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   // creating  Reactive Form
   restaurantForm = new FormGroup({
@@ -56,25 +52,19 @@ export class RestaurantsComponent implements OnInit {
 
   // calling restaurants api
   showResturants(url:any){
-    url = 'https://random-data-api.com/api/restaurant/random_restaurant'
     this.RestaurantService.getResturants(url).subscribe((response)=>{
       this.restaurantDetails=response;
-      this.restaurants = this.findMostRepeatedWord(response.description)
+      this.mostRepeatedWords = this.findMostRepeatedWord(response.description)
     })
   }
 
   // function for most used words
   findMostRepeatedWord(str:any) {
-    var restaurant:any = [{}];
-    str = 'our values have remained the same.'
-    var lowerCaseString = str.toLowerCase();
-    let dataArray = lowerCaseString.split(' ');
-    dataArray.forEach((word:any) => {
-      console.log(restaurant) // values
-      restaurant[word] = (restaurant[word] || 0) + 1;
-    });
-    console.error(restaurant);
-    return restaurant;
+    let dataArray =  str.toLowerCase().split(' ');
+    const duplicateWords = dataArray.reduce((accumulator:any, value:any) => {
+      return {...accumulator, [value]: (accumulator[value] || 0) + 1};
+    }, {});
+    return duplicateWords;
   }
 
   goBack(){
