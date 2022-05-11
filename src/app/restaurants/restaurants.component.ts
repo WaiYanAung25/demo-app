@@ -11,7 +11,6 @@ import { Validators } from '@angular/forms';
 
 export class RestaurantsComponent implements OnInit {
   formSubmitted = false;
-  noData = true;
   mostRepeatedWords:any[]= []; 
   restaurantDetails = {
     'name':'',
@@ -61,11 +60,6 @@ export class RestaurantsComponent implements OnInit {
     this.RestaurantService.getResturants(url).subscribe((response)=>{
       this.restaurantDetails=response;
       this.mostRepeatedWords = this.findDuplicateWords(response.description);
-      Object.values( this.mostRepeatedWords).forEach(element => {
-        if(element>=10){
-          this.noData = false;
-          }
-        })
     })
   }
 
