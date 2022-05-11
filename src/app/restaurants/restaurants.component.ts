@@ -38,7 +38,7 @@ export class RestaurantsComponent implements OnInit {
   get userEmail(){
     return this.restaurantForm.get('userEmail')
   }
-  
+
   get userName(){
     return this.restaurantForm.get('userName')
   
@@ -56,20 +56,25 @@ export class RestaurantsComponent implements OnInit {
 
   // calling restaurants api
   showResturants(url:any){
+    url = 'https://random-data-api.com/api/restaurant/random_restaurant'
     this.RestaurantService.getResturants(url).subscribe((response)=>{
       this.restaurantDetails=response;
-      this.findMostRepeatedWord(response.description)
+      this.restaurants = this.findMostRepeatedWord(response.description)
     })
   }
 
   // function for most used words
   findMostRepeatedWord(str:any) {
+    var restaurant:any = [{}];
+    str = 'our values have remained the same.'
     var lowerCaseString = str.toLowerCase();
     let dataArray = lowerCaseString.split(' ');
-    dataArray.forEach((element:any) => {
-      this.restaurants[element] = (this.restaurants[element] || 0) + 1;
+    dataArray.forEach((word:any) => {
+      console.log(restaurant) // values
+      restaurant[word] = (restaurant[word] || 0) + 1;
     });
-    return this.restaurants;
+    console.error(restaurant);
+    return restaurant;
   }
 
   goBack(){
